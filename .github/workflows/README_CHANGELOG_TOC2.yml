@@ -1,3 +1,8 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 1 optimization:
+# - [MEDIUM] Add concurrency group to "README_CHANGELOG_TOC2.yml"
+# Estimated savings: ~2 min/run
+#
 # https://github.com/technote-space/toc-generator
 name: README_CHANGELOG_TOC2
 on:
@@ -6,6 +11,10 @@ on:
     branches: master
   pull_request:
 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
